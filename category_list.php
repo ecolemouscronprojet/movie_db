@@ -27,9 +27,13 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
         </tr>
     <?php foreach($categories as $category): ?>
         <tr>
-            <td><?php echo $category['id'] ?></td>
-            <td><?php echo $category['name'] ?></td>
-            <td></td>
+            <td><?= $category['id'] ?></td>
+            <td><?= $category['name'] ?></td>
+            <td>
+                <a onclick="return confirm('Voulez-vous vraiment supprimer cet élement ?')" 
+                href="category_remove.php?id=<?= $category['id'] ?>" class="btn btn-danger">SUPPRIMER</a>
+                <a href="category.php" class="btn btn-primary">MODIFIER</a>
+            </td>
         </tr>
     <?php endforeach; ?>
 
