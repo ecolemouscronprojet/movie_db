@@ -1,0 +1,23 @@
+{
+  "name": "movie_db",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecolemouscronprojet/movie_db.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ecolemouscronprojet/movie_db/issues"
+  },
+  "homepage": "https://github.com/ecolemouscronprojet/movie_db#readme",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
