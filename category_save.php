@@ -11,4 +11,7 @@ $name = $_POST['name'];
 
 //echo 'insert into category (name) values ("'.$name.'")';exit;
 
-$result = $db->query('insert into category (name) values ("'.$name.'")');
+// SI EDITION
+    // UPDATE
+// SINON    
+    $result = $db->query('insert into category (name) values ("'.$name.'")');
