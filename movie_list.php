@@ -2,9 +2,10 @@
 
 require_once('connexion.php');
 
-$query = $db->query('select * from category');
+$query = $db->query('select * from movie');
 
-$categories = $query->fetchAll(PDO::FETCH_ASSOC);
+$movies = $query->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 <!DOCTYPE html>
@@ -21,16 +22,20 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
         <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Release</th>
+            <th>Duration</th>
             <th>ACTION</th>
         </tr>
-    <?php foreach($categories as $category): ?>
+    <?php foreach($movies as $movie): ?>
         <tr>
-            <td><?= $category['id'] ?></td>
-            <td><?= $category['name'] ?></td>
+            <td><?= $movie['id'] ?></td>
+            <td><?= $movie['name'] ?></td>
+            <td><?= $movie['release'] ?></td>
+            <td><?= $movie['duration'] ?></td>
             <td>
                 <a onclick="return confirm('Voulez-vous vraiment supprimer cet élement ?')" 
-                href="category_remove.php?id=<?= $category['id'] ?>" class="btn btn-danger">SUPPRIMER</a>
-                <a href="category.php?id=<?= $category['id'] ?>" class="btn btn-primary">MODIFIER</a>
+                href="movie_remove.php?id=<?= $movie['id'] ?>" class="btn btn-danger">SUPPRIMER</a>
+                <a href="movie.php?id=<?= $movie['id'] ?>" class="btn btn-primary">MODIFIER</a>
             </td>
         </tr>
     <?php endforeach; ?>

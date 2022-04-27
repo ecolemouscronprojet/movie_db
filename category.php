@@ -1,4 +1,6 @@
 <?php
+
+
 require_once('connexion.php');
 
 $id = $_GET['id'] ?? null;
@@ -27,7 +29,7 @@ if ($id != null) {
 </head>
 
 <body>
-    <form action="category_save.php?<?= $url ?>" method="post">
+    <form action="category_save.php<?= $url ?>" method="post">
         <div>
             <label>Name</label>
             <input type="text" value="<?= $category['name'] ?? '' ?>" name="name" placeholder="Placez ici votre nom">
