@@ -35,7 +35,7 @@ $movies = $query->fetchAll(PDO::FETCH_ASSOC);
             <td>
                 <a onclick="return confirm('Voulez-vous vraiment supprimer cet élement ?')" 
                 href="movie_remove.php?id=<?= $movie['id'] ?>" class="btn btn-danger">SUPPRIMER</a>
-                <a href="movie.php?id=<?= $movie['id'] ?>" class="btn btn-primary">MODIFIER</a>
+                <a href="movie_edit.php?id=<?= $movie['id'] ?>" class="btn btn-primary">MODIFIER</a>
             </td>
         </tr>
     <?php endforeach; ?>

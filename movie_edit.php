@@ -1,3 +1,19 @@
+<?php
+require_once('connexion.php');
+
+$id = $_GET['id'] ?? null;
+
+$query = $db->query("select * from movie where id=$id");
+
+$movie = $query->fetch(PDO::FETCH_ASSOC);
+
+if ($movie == null) {
+  header('location: movie_list.php');
+  exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,20 +27,20 @@
 
 <body>
 
-  <form method="post" action="movie_save.php">
+  <form method="post" action="movie_save.php<?= $id != null ? "?id=$id" : ''?>">
     <div class="mb-3">
       <label for="name" class="form-label">Nom</label>
-      <input type="text" class="form-control" id="name" name="name">
+      <input type="text" class="form-control" value="<?= $movie['name'] ?? '' ?>" id="name" name="name">
     </div>
 
     <div class="mb-3">
       <label for="release" class="form-label">Sortie</label>
-      <input type="date" class="form-control" id="release" name="release">
+      <input type="date" class="form-control" value="<?= $movie['release'] ?? '' ?>" id="release" name="release">
     </div>
 
     <div class="mb-3">
       <label for="duration" class="form-label">Durée</label>
-      <input type="number" class="form-control" id="duration" name="duration">
+      <input type="number" class="form-control" value="<?= $movie['duration'] ?? '' ?>" id="duration" name="duration">
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
