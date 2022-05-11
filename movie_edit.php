@@ -3,13 +3,15 @@ require_once('connexion.php');
 
 $id = $_GET['id'] ?? null;
 
-$query = $db->query("select * from movie where id=$id");
+if ($id != null) {
+  $query = $db->query("select * from movie where id=$id");
 
-$movie = $query->fetch(PDO::FETCH_ASSOC);
+  $movie = $query->fetch(PDO::FETCH_ASSOC);
 
-if ($movie == null) {
-  header('location: movie_list.php');
-  exit;
+  if ($movie == null) {
+    header('location: movie_list.php');
+    exit;
+  }
 }
 
 ?>
@@ -26,26 +28,37 @@ if ($movie == null) {
 </head>
 
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-8 mt-3">
+        <form method="post" action="movie_save.php<?= $id != null ? "?id=$id" : '' ?>">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nom</label>
+            <input type="text" class="form-control" value="<?= $movie['name'] ?? '' ?>" id="name" name="name">
+          </div>
 
-  <form method="post" action="movie_save.php<?= $id != null ? "?id=$id" : ''?>">
-    <div class="mb-3">
-      <label for="name" class="form-label">Nom</label>
-      <input type="text" class="form-control" value="<?= $movie['name'] ?? '' ?>" id="name" name="name">
+          <div class="mb-3">
+            <label for="release" class="form-label">Sortie</label>
+            <input type="date" class="form-control" value="<?= $movie['release'] ?? '' ?>" id="release" name="release">
+          </div>
+
+          <div class="mb-3">
+            <label for="duration" class="form-label">Durée</label>
+            <input type="number" class="form-control" value="<?= $movie['duration'] ?? '' ?>" id="duration" name="duration">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-6">
+        <?php include('category_movie.php'); ?>
+      </div>
+      <div class="col-6">AUTRE CHOSE</div>
     </div>
 
-    <div class="mb-3">
-      <label for="release" class="form-label">Sortie</label>
-      <input type="date" class="form-control" value="<?= $movie['release'] ?? '' ?>" id="release" name="release">
-    </div>
-
-    <div class="mb-3">
-      <label for="duration" class="form-label">Durée</label>
-      <input type="number" class="form-control" value="<?= $movie['duration'] ?? '' ?>" id="duration" name="duration">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-
+  </div>
 </body>
 
 </html>
