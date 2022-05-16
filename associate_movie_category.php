@@ -7,9 +7,15 @@ if($movieId == null){
     exit;
 }
 
-$query = $db->query('select * from category');
+$query = $db->query("select id, name, 
+IF(category_id is null,0, 1) as isSelected
+ from(
+	select * from category as c
+	left join category_movie as cm on cm.category_id = c.id and cm.movie_id=$movieId
+) as t order by id desc");
 
 $categories = $query->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +39,9 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
                     <ul class="list-group">
                         <?php foreach($categories as $category): ?>
                             <li class="list-group-item">
-                                <input class="form-check-input me-1" name="categories" type="checkbox" value="<?= $category['id'] ?>">
+                                <input
+                                    <?= $category['isSelected'] ? 'checked' : ''?>
+                                class="form-check-input me-1" name="categories[]" type="checkbox" value="<?= $category['id'] ?>">
                                 <?= $category['name'] ?>
                             </li>
                         <?php endforeach; ?>
