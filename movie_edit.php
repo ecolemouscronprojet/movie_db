@@ -55,7 +55,9 @@ if ($id != null) {
       <div class="col-6">
         <?php include('category_movie.php'); ?>
       </div>
-      <div class="col-6">AUTRE CHOSE</div>
+      <div class="col-6">
+        <?php include('rate_movie.php'); ?>
+      </div>
     </div>
 
   </div>
