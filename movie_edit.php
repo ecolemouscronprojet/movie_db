@@ -25,12 +25,14 @@ if ($id != null) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 
 <body>
   <div class="container">
     <div class="row">
       <div class="col-8 mt-3">
+
         <form method="post" action="movie_save.php<?= $id != null ? "?id=$id" : '' ?>">
           <div class="mb-3">
             <label for="name" class="form-label">Nom</label>

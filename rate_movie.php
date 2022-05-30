@@ -8,14 +8,16 @@ if ($movieId != null) :
 ?>
     <h3>Notes</h3>
     <a href="movie_rate.php?movie_id=<?= $movieId ?>" class="btn btn-success btn-sm mt-3 mb-3">Ajouter</a>
-    
+
     <ol class="list-group list-group-numbered">
         <?php foreach($rates as $r): ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
                 <?= $r['comment']?><br>
                 </div>
-                <span class="badge bg-primary rounded-pill"> <?= $r['rating'] . '/5' ?></span>
+                <?php for($i=1;$i<=5; $i++): ?>
+                    <i class="bi bi-star<?= $i<= $r['rating'] ? '-fill' : '' ?> text-warning"></i>
+                <?php endfor; ?>
             </li>
         <?php endforeach; ?>
     </ol> 

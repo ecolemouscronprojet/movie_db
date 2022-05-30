@@ -26,6 +26,7 @@ if ($movieId == null) {
   <div class="container">
     <div class="row">
       <div class="col-8 mt-3">
+      
         <form method="post" action="movie_rate_save.php?movie_id=<?= $movieId ?>">
           <div class="mb-3">
             <label for="rating" class="form-label">Note</label>
